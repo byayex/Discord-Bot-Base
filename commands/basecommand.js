@@ -8,6 +8,6 @@ module.exports = {
 	
 		async execute(interaction, client) 
     {
-		
+		interaction.reply({content: 'You used the Base-Command', ephemeral: true})
     }
 };

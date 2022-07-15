@@ -1,5 +1,4 @@
 const { Guild, Interaction, MessageEmbed, MessageActionRow, Modal, TextInputComponent, MessageButton } = require('discord.js');
-const { sendEmbed } = require('../../utils/embed');
 require('dotenv').config();
 
 module.exports = async (Discord, client, interaction) =>
@@ -17,7 +16,14 @@ module.exports = async (Discord, client, interaction) =>
         } catch (err)
         {
             console.error(err);
-            sendEmbed('🤖 - Bot Error', 'Please contact staff!', null, interaction, true, 'error');
+
+            var embed = new MessageEmbed()
+            .setColor('#d19732')
+            .setTitle('🤖 - Bot Error')
+            .setDescription('Please contact staff!')
+            .setTimestamp()
+
+            interaction.reply({embeds: [embed], ephemeral: true});
         }
     }
 }
