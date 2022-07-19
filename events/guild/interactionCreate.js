@@ -17,13 +17,13 @@ module.exports = async (Discord, client, interaction) =>
         {
             console.error(err);
 
-            var embed = new MessageEmbed()
+            var error_embed = new MessageEmbed()
             .setColor('#d19732')
             .setTitle('🤖 - Bot Error')
             .setDescription('Please contact staff!')
             .setTimestamp()
 
-            interaction.reply({embeds: [embed], ephemeral: true});
+            interaction.reply({embeds: [error_embed], ephemeral: true});
         }
     }
 }
