@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -13,7 +13,7 @@ module.exports = {
     {
 		const string = interaction.options.getString('input');
 
-		if(string = undefined)
+		if(!string)
 		{
 			interaction.reply({content: `You used the Base-Command!\nInput: undefiend`, ephemeral: true})
 		}else

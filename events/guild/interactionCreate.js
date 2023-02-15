@@ -3,7 +3,6 @@ require('dotenv').config();
 
 module.exports = async (Discord, client, interaction) =>
 {
-
     if(interaction.isCommand())
     {
         const command = client.commands.get(interaction.commandName);
