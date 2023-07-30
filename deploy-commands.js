@@ -1,50 +1,70 @@
-function registerCommands()
-{
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-require('dotenv').config();
-const fs = require('fs');
+function registerCommands() {
+	const { REST } = require('@discordjs/rest');
+	const { Routes } = require('discord-api-types/v9');
+	require('dotenv').config();
+	const fs = require('fs');
 
-const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+	const commands = [];
+	const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-const clientId = process.env.CLIENT_ID;
-const DEV_GUILD = process.env.GUILD_ID;
-const modus = process.env.CMD_MODE;
+	const clientId = process.env.CLIENT_ID;
+	const DEV_GUILD = process.env.GUILD_ID;
+	const modus = process.env.CMD_MODE;
+	const emptyCommands = process.env.EMPTY_COMMANDS
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	commands.push(command.data.toJSON());
-}
-
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-
-(async () => {
-	try {
-		console.log('Started refreshing application (/) commands.');
-
-		if (modus === 'GLOBAL') // ON EVERY GUILD (1h)
-		{
-			console.log('Reloading Globally!')
-			await rest.put(
-				Routes.applicationCommands(clientId),
-				{ body: commands },
-			);
-		}
-		if (modus === 'DEV') // ONLY ON CERTAIN GUILD (INSTANT)
-		{
-			console.log('Reloading on the Developer-Server!')
-			await rest.put(
-				Routes.applicationGuildCommands(clientId, DEV_GUILD),
-				{ body: commands },
-			);
-		}
-
-		console.log('Successfully reloaded application (/) commands.');
-	} catch (error) {
-		console.error(error);
+	for (const file of commandFiles) {
+		const command = require(`./commands/${file}`);
+		commands.push(command.data.toJSON());
 	}
-})();
+
+	const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+
+	(async () => {
+		try {
+			console.log('Started refreshing application (/) commands.');
+
+			if (modus === 'GLOBAL') // ON EVERY GUILD (1h)
+			{
+				if (emptyCommands == 'Y') {
+					console.log('Started Removing all Commands')
+					console.log('Reloading Globally!')
+					await rest.put(
+						Routes.applicationCommands(clientId),
+						{ body: [] },
+					);
+				} else {
+					console.log('Reloading Globally!')
+					await rest.put(
+						Routes.applicationCommands(clientId),
+						{ body: commands },
+					);
+				}
+			}
+			if (modus === 'DEV') // ONLY ON CERTAIN GUILD (INSTANT)
+			{
+				if(emptyCommands == 'Y')
+				{
+					console.log('Started Removing all Commands')
+					console.log('Reloading on the Developer-Server!')
+					await rest.put(
+						Routes.applicationGuildCommands(clientId, DEV_GUILD),
+						{ body: [] },
+					);
+				}else
+				{
+					console.log('Reloading on the Developer-Server!')
+					await rest.put(
+						Routes.applicationGuildCommands(clientId, DEV_GUILD),
+						{ body: commands },
+					);
+				}
+			}
+
+			console.log('Successfully reloaded application (/) commands.');
+		} catch (error) {
+			console.error(error);
+		}
+	})();
 }
 
-module.exports = {registerCommands}
+module.exports = { registerCommands }
