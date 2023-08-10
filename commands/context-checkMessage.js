@@ -11,12 +11,8 @@ module.exports = {
 
         const targetMessage = interaction.targetMessage;
 
-        if (bannedWords.some(word => {
-
-            targetMessage.toLowerCase().includes(word.toLowerCase());
-
-        })) {
-
+        if (bannedWords.some(word => { targetMessage.toLowerCase().includes(word.toLowerCase()); })) 
+        {
             await targetMessage.delete().catch(console.error)
             await targetMessage.member.disableCommunicationUntil(Date.now() + (5 * 60 * 1000), 'Bad Word Usage in Message.')
                 .catch(console.error);
