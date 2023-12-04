@@ -1,4 +1,5 @@
-const { SlashCommandBuilder } = require('discord.js');
+import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ExtendedClient } from "../models/ExtendedClient";
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -9,7 +10,7 @@ module.exports = {
 				.setDescription('The input to echo back')
 				.setRequired(false)),
 	
-		async execute(interaction, client) 
+	async execute(client: ExtendedClient, interaction: ChatInputCommandInteraction) 
     {
 		const string = interaction.options.getString('input');
 
