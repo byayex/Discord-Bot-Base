@@ -6,6 +6,8 @@ Feel free to copy, use or share it!
 # Start with
 ```
 npm i
+```
+```
 npm start
 ```
 
