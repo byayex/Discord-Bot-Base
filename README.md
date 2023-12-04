@@ -3,13 +3,9 @@ This is a Discord.JS Discord Bot Base written in Typescript!
 
 Feel free to copy, use or share it!
 
-## Dont forget to use
-```
-npm i
-```
-
 # Start with
 ```
+npm i
 npm start
 ```
 
