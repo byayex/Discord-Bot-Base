@@ -20,4 +20,10 @@ GUILD_ID = 584088723952631829
 CMD_MODE = DEV
 # Y if you want to delete Commands, N if you dont want to delete the commands
 EMPTY_COMMANDS = N
+# MySQL Settings
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=botbase
+MYSQL_PASSWORD=botbasepassword
+MYSQL_DATABASE=botdb
 ```
