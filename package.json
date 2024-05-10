@@ -4,7 +4,7 @@
   "description": "This is a Discord.JS Discord Bot Base written in Typescript!",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^14.12.1",
+    "discord.js": "^14.15.2",
     "dotenv": "^16.4.5",
     "mysql2": "^3.9.7",
     "ts-node": "^10.9.2"
