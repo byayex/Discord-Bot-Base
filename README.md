@@ -1,29 +1,33 @@
-# Discord-Bot-Base
+# Discord-Bot-Bas
+
 This is a Discord.JS Discord Bot Base written in Typescript!
 
 Feel free to copy, use or share it!
 
-# Start with
-```
+## Start with
+
+```console
 npm i
 ```
-```
+
+```console
 npm start
 ```
 
-# Example .env File
-```
-TOKEN = MTA3MTQzMDAyOTMwNjc3MzU1NA.GF-Z_C.5ZEl-cn_bYKue0xXyKBDJtNke9TAgH4XeMrnAk
-CLIENT_ID = 1061250029306773554
-GUILD_ID = 584088723952631829
-# DEV TO UPDATE ONE GUILD (INSTANT) GLOBAL TO UPDATE EVERY GUILD (UP TO 1 HOUR)
-CMD_MODE = DEV
-# Y if you want to delete Commands, N if you dont want to delete the commands
-EMPTY_COMMANDS = N
-# MySQL Settings
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=botbase
-MYSQL_PASSWORD=botbasepassword
-MYSQL_DATABASE=botdb
+## Example .env file (has to be placed here -> ./src/.env)
+
+```env
+# BOT PART
+TOKEN=token_here
+CLIENT_ID=bot_client_id_here
+GUILD_ID=guild_id_here
+CMD_MODE=DEV # DEV is faster but limited to the guild set above. Options: DEV | GLOBAL
+# MYSQL PART
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3310
+MYSQL_USER=whalebot
+MYSQL_PASSWORD=whalebot
+MYSQL_DATABASE=whalebot
+MYSQL_CONNECTION_LIMIT=10
+MYSQL_ROOT_PASSWORD=whalebot
 ```
