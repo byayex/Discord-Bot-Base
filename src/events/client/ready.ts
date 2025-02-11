@@ -1,5 +1,5 @@
 import { Client } from 'discord.js';
 
-module.exports = (_Discord: any, client: Client) => {
+module.exports = (_: unknown, client: Client) => {
   console.log('StartUp -> ' + 'Bot - Account: ' + client.user?.tag + ' is now online!');
 };

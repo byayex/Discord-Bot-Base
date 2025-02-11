@@ -1,7 +1,8 @@
-import { Client } from "discord.js";
+import { Client, Collection } from "discord.js";
 import DatabaseManager from "../utils/DatabaseManager";
+import { Command } from "./Command";
 
 export interface ExtendedClient extends Client {
-    commands: any;
+    commands: Collection<string, Command>;
     connection: DatabaseManager;
 }

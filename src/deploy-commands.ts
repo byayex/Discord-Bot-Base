@@ -6,7 +6,7 @@ import * as fs from 'fs/promises';
 config();
 
 async function registerCommands() {
-    const commands: any[] = [];
+    const commands: string[] = [];
     const commandFiles = (await fs.readdir('./commands')).filter((file) =>
         file.endsWith('.ts')
     );
@@ -17,7 +17,7 @@ async function registerCommands() {
     const emptyCommands = process.env.EMPTY_COMMANDS as string;
 
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
+        const command = await import(`./commands/${file}`);
         commands.push(command.data.toJSON());
     }
 

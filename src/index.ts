@@ -4,17 +4,18 @@ import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import { registerCommands } from './deploy-commands';
 import { ExtendedClient } from './models/ExtendedClient';
 import DatabaseManager from './utils/DatabaseManager';
+import { Command } from './models/Command';
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] }) as ExtendedClient;
 
-// Enable database connection here
-// client.connection = new DatabaseManager();
+client.connection = new DatabaseManager();
 
-client.commands = new Collection<string, any>();
+client.commands = new Collection<string, Command>();
 const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.ts'));
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const command: Command = require(`./commands/${file}`);
     client.commands.set(command.data.name, command);
 }
 
