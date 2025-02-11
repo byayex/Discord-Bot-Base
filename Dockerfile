@@ -17,4 +17,4 @@ COPY --from=build /usr/src ./
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-CMD ["npx", "ts-node", "index.ts"]
+ENTRYPOINT ["npx", "ts-node", "index.ts"]
