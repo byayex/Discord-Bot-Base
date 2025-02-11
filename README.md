@@ -14,7 +14,9 @@ npm i
 npm start
 ```
 
-## Example .env file (has to be placed here -> ./src/.env)
+## Example .env file
+
+The .env file should be placed in the src folder for a barebones bot setup, or in the main directory for use with Docker Compose.
 
 ```env
 # BOT PART
