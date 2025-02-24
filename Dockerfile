@@ -4,7 +4,8 @@ WORKDIR /usr/src
 
 COPY src/package*.json ./
 
-RUN npm install --production
+# We cant use --production here because we are building typescript in the container
+RUN npm install
 
 COPY src/ ./
 
