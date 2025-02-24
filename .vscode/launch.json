@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug NPM Start",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start",
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src"
+        }
+    ],
+}
