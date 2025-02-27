@@ -29,6 +29,5 @@ PG_HOST=127.0.0.1
 PG_PORT=3310
 PG_USER=whalebot
 PG_PASSWORD=whalebot
-PG_PASSWORD=whalebot
 PG_DATABASE=whalebot
 ```

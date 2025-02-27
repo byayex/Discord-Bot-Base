@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+import { Pool, QueryResult } from 'pg';
 
 class DatabaseManager {
     private pool: Pool;
@@ -37,20 +37,11 @@ class DatabaseManager {
         }
     }
 
-    public async query(sql: string, args: (string | number)[]): Promise<unknown[]> {
-
-        const client = await this.pool.connect();
-
-        try {
-            const res = await client.query(sql, args);
-            return res.rows;
-        // Disabling warning because we want to release it.
-        // eslint-disable-next-line no-useless-catch
-        } catch (err) {
-            throw err;
-        } finally {
-            client.release();
-        }
+    // Disabling the error because we want to have the any (cant cast it to unknown i guess :|)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public async query(sql: string, args: (string | number)[]): Promise<QueryResult<any>> {
+        const res = await this.pool.query(sql, args);
+        return res;
     }
 
     public async end(): Promise<void> {

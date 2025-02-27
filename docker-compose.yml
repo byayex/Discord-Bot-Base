@@ -1,6 +1,6 @@
 services:
   bot_app:
-    image: image:version
+    image: <yourimagehere>:<yourversionhere>
     container_name: bot_app
     restart: unless-stopped
     depends_on:
@@ -18,23 +18,26 @@ services:
       - PG_PASSWORD=${PG_PASSWORD}
       - PG_DATABASE=${PG_DATABASE}
 
-  bot_database:
-    image: postgres:latest
-    container_name: bot_database
-    restart: unless-stopped
-    expose:
-      - ${PG_PORT}
-    environment:
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_PASSWORD: ${PG_PASSWORD}
-      POSTGRES_DB: ${PG_DATABASE}
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${PG_USER}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - pg_data:/var/lib/postgresql/data
+bot_database:
+  image: postgres:latest
+  container_name: bot_database
+  restart: unless-stopped
+  expose:
+    - ${PG_PORT}
+  environment:
+    POSTGRES_USER: ${PG_USER}
+    POSTGRES_PASSWORD: ${PG_PASSWORD}
+    POSTGRES_DB: ${PG_DATABASE}
+    PGPORT: ${PG_PORT}
+  healthcheck:
+    test: [ "CMD-SHELL", "pg_isready -U ${PG_USER}" ]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+  volumes:
+    - pg_data:/var/lib/postgresql/data
 
 volumes:
   pg_data:
+
+
