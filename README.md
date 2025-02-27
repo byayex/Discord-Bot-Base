@@ -1,4 +1,4 @@
-# Discord-Bot-Bas
+# Discord-Bot-Base
 
 This is a Discord.JS Discord Bot Base written in Typescript!
 
