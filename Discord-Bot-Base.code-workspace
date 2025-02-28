@@ -1,0 +1,49 @@
+{
+	"folders": [
+		{
+			"name": "All",
+			"path": "."
+		},
+		{
+			"name": "Bot",
+			"path": "src"
+		}
+	],
+	"launch": {
+		"configurations": [
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Debug NPM Start",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run",
+					"start"
+				],
+				"console": "integratedTerminal",
+				"cwd": "${workspaceFolder}/src"
+			}
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "npm install",
+				"type": "shell",
+				"command": "npm install",
+				"problemMatcher": [],
+				"presentation": {
+					"reveal": "silent",
+					"panel": "shared"
+				},
+				"options": {
+					"cwd": "${workspaceFolder}/src"
+				},
+				"runOptions": {
+					"runOn": "folderOpen"
+				},
+			},
+		]
+	},
+}
