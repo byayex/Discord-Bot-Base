@@ -12,14 +12,14 @@ module.exports = {
 	
 	async execute(client: ExtendedClient, interaction: ChatInputCommandInteraction) 
     {
-		const string = interaction.options.getString('input') as string;
+		const string = interaction.options.getString('input') ?? "";
 
 		if(string.length == 0)
 		{
-			interaction.reply({content: `You used the Base-Command!\nInput: undefiend`, ephemeral: true})
+			interaction.reply({content: `You used the Base-Command!\nInput: undefiend`})
 		}else
 		{
-			interaction.reply({content: `You used the Base-Command!\n${string}`, ephemeral: true})
+			interaction.reply({content: `You used the Base-Command!\n${string}`})
 		}
     }
 };
