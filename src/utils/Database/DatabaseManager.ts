@@ -61,7 +61,7 @@ export class DatabaseManager {
  * Factory function to create a database manager
  */
 export function createDatabase(type?: DatabaseType, config?: DatabaseConfig): DatabaseManager {
-    if(!type) {
+    if (!type) {
         type = process.env.DATABASE_TYPE as DatabaseType ?? DatabaseType.sqlite;
     }
     if (!config) {
