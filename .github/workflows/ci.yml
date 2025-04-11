@@ -38,11 +38,15 @@ jobs:
           version=${GITHUB_REF#refs/tags/v}
           echo "tag=${version}" >> $GITHUB_ENV
         fi
+    
+    - name: Downcase repository name
+      run: |
+        echo "repo=${GITHUB_REPOSITORY@L}" >> $GITHUB_ENV
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: ghcr.io/${{ github.repository }}:${{ env.tag }}
+        tags: ghcr.io/${{ env.repo }}:${{ env.tag }}
     
