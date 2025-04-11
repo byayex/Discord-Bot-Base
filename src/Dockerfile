@@ -2,12 +2,12 @@ FROM node:20-alpine AS build
 
 WORKDIR /usr/src
 
-COPY src/package*.json ./
+COPY ./package*.json ./
 
 # We cant use --production here because we are building typescript in the container
 RUN npm install
 
-COPY src/ ./
+COPY ./ ./
 
 FROM node:20-alpine
 
